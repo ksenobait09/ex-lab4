@@ -35,3 +35,16 @@
 # test_4
 # 1
 # 2
+def print_result(func_to_decorate):
+    def decorated_func(*args):
+        res = func_to_decorate(*args)
+        if type(res) == list:
+            print(func_to_decorate.__name__, *list(res), sep='\n')
+        elif type(res) == dict:
+            print(func_to_decorate.__name__ , '\n'.join('{}={}'.format(k[0],k[1]) for k in res.items()), sep='\n')
+        else:
+            print(func_to_decorate.__name__, res, sep='\n')
+        return res
+    return decorated_func
+
+        
